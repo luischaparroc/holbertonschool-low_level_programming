@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - Prints numbers between 0 to 9.
+ * main - Prints reversed alphabet.
  *
  * Return: Always 0 (Success)
  */

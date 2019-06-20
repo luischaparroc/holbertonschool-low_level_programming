@@ -19,11 +19,12 @@ int main(void)
 		{
 			putchar(e);
 			putchar(i);
-			if (i != 57 && e != 58)
+			if (i == 57 && e == 57)
 			{
-				putchar(',');
-				putchar(' ');
+				break;
 			}
+			putchar(',');
+			putchar(' ');
 			i++;
 		}
 		e++;

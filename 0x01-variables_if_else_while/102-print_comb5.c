@@ -30,7 +30,7 @@ int main(void)
 					putchar(' ');
 					putchar(e);
 					putchar(i);
-					if (h == 57 && g == 57)
+					if (h == 57 && g == 57 && e == 57 && i == 57)
 					{
 						break;
 					}
@@ -42,6 +42,7 @@ int main(void)
 			}
 			g++;
 		}
+		h++;
 	}
 	putchar('\n');
 	return (0);

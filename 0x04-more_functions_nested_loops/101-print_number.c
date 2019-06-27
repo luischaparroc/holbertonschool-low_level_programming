@@ -7,33 +7,29 @@
  */
 void print_number(int n)
 {
-	int boolean, m, count;
+	unsigned int m, d, count;
 
-	m = n;
-	boolean = 1;
-	count = 0;
-	while (boolean)
+	if (n < 0)
 	{
-		if (m < 0)
-		{
-			_putchar(45);
-			n *= -1;
-			m = n;
-		}
-		while (m > 9)
-		{
-			m /= 10;
-			count += 10;
-		}
-		_putchar(m + 48);
-		if (m == (n % 10))
-		{
-			break;
-		}
-		else
-		{
-			m = n % count;
-		}
-		count = 0;
+		_putchar(45);
+		m = n * -1;
+	}
+	else
+	{
+		m = n;
+	}
+
+	d = m;
+	count = 1;
+
+	while(d > 9)
+	{
+		d /= 10;
+		count *= 10;
+	}
+
+	for (; count >= 1; count /= 10)
+	{
+		_putchar(((m / count) % 10) + 48);
 	}
 }

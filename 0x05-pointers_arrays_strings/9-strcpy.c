@@ -15,10 +15,8 @@ char *_strcpy(char *dest, char *src)
 	while (count >= 0)
 	{
 		*(dest + count) = *(src + count);
-		if (src[count] == '\0')
-		{
+		if (*(src + count) == '\0')
 			break;
-		}
 		count++;
 	}
 	return(dest);

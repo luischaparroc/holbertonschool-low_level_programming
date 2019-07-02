@@ -25,8 +25,6 @@ int _atoi(char *s)
 		}
 		count++;
 	}
-	if (size == 0)
-		return (oi);
 
 	for (i = count - size; i < count; i++)
 	{

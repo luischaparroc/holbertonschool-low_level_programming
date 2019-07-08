@@ -7,15 +7,10 @@
  */
 char *_strchr(char *s, char c)
 {
-	unsigned int i = 0, j = 0;
+	unsigned int i = 0;
 
 	for (; *(s + i) != '\0'; i++)
-		if (*(s + i) == c && j == 0)
-		{
-			j = i;
-			break;
-		}
-	if (j == 0)
-		return ('\0');
-	return (s + j);
+		if (*(s + i) == c)
+			return (s + i);
+	return ('\0');
 }

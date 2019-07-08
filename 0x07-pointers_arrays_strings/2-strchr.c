@@ -16,6 +16,6 @@ char *_strchr(char *s, char c)
 			break;
 		}
 	if (j == 0)
-		return (s + i);
+		return ('\0');
 	return (s + j);
 }

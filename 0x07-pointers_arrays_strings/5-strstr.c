@@ -10,25 +10,24 @@
 */
 char *_strstr(char *haystack, char *needle)
 {
-	unsigned int i, j, ln, bool;
+	unsigned int i, j, ln, boolean;
 
 	for (ln = 0; *(needle + ln) != '\0'; ln++)
 		;
 	for (i = 0; *(haystack + i) != '\0'; i++)
 	{
-		bool = 1;
+		boolean = 1;
 		for (j = 0; *(needle + j) != '\0'; j++)
 		{
 			if (*(haystack + j + i) == *(needle + j))
-				bool = 0;
+				boolean = 0;
 			else
 			{
-				bool = 1;
-				i = i + j - 1;
+				boolean = 1;
 				break;
 			}
 		}
-		if (bool == 0 && j == ln)
+		if (boolean == 0)
 			return (haystack + i);
 	}
 	return (0);

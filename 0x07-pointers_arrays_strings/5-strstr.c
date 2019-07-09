@@ -10,7 +10,7 @@
 */
 char *_strstr(char *haystack, char *needle)
 {
-	unsigned int i, j, ln, boolean;
+	unsigned int i = 0, j = 0, ln = 0, boolean;
 
 	for (ln = 0; *(needle + ln) != '\0'; ln++)
 		;
@@ -30,5 +30,7 @@ char *_strstr(char *haystack, char *needle)
 		if (boolean == 0 && j == ln)
 			return (haystack + i);
 	}
+	if (j == ln)
+		return (haystack + i);
 	return (0);
 }

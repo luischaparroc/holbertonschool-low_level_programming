@@ -1,5 +1,5 @@
 #include "holberton.h"
-#include <stdio.h>
+
 /**
  * _strstr - finds the first occurrence of the substring.
  * needle in the string haystack.

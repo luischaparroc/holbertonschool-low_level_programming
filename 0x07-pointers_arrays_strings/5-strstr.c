@@ -27,7 +27,7 @@ char *_strstr(char *haystack, char *needle)
 				break;
 			}
 		}
-		if (boolean == 0)
+		if (boolean == 0 && j == ln)
 			return (haystack + i);
 	}
 	return (0);

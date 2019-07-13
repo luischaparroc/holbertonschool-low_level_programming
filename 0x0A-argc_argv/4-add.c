@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
  * main - adds positive numbers.
  * @argc: number of command line arguments.
@@ -8,24 +8,19 @@
  */
 int main(int argc, char *argv[])
 {
-	int i, add = 0, num;
+	int i, j, add = 0;
 
 	for (i = 1; i < argc; i++)
 	{
-		num = 0;
-		while (*(argv + i)[0] != '\0')
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			if (*(argv + i)[0] < '0' || *(argv + i)[0] > '9')
+			if (argv[i][j] < '0' || argv[i][j] > '9')
 			{
 				printf("Error\n");
 				return (1);
 			}
-			if (num != 0)
-				num *= 10;
-			num += (*(argv + i)[0] - '0');
-			argv[i]++;
 		}
-		add += num;
+		add += atoi(argv[i]);
 	}
 	printf("%d\n", add);
 	return (0);

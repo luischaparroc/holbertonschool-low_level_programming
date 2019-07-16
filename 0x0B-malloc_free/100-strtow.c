@@ -37,7 +37,6 @@ char **strtow(char *str)
 					for (i--; i > 0; i--)
 						free(aout[i]);
 					free(aout[i]);
-					free(aout);
 					return (NULL);
 				}
 				break;

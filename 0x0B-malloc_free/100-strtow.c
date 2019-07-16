@@ -10,7 +10,7 @@
 char **strtow(char *str)
 {
 	char **aout;
-	int c, height, i, j, a1;
+	unsigned int c, height, i, j, a1;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
@@ -34,8 +34,9 @@ char **strtow(char *str)
 				aout[i] = malloc((c - a1 + 2) * sizeof(char));
 				if (aout[i] == NULL)
 				{
-					for (i--; i >= 0; i--)
+					for (i--; i > 0; i--)
 						free(aout[i]);
+					free(aout[i]);
 					free(aout);
 					return (NULL);
 				}

@@ -6,7 +6,7 @@
  * @ac: argument count.
  * @av: argument vector.
  *
- * Return: pointer of an array of integers
+ * Return: pointer of an array of char
  */
 char *argstostr(int ac, char **av)
 {

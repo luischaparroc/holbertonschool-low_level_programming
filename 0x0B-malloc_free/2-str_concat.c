@@ -13,9 +13,6 @@ char *str_concat(char *s1, char *s2)
 	char *strout;
 	unsigned int i, j, k, limit;
 
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
-
 	for (i = 0; s1[i] != '\0'; i++)
 		;
 
@@ -33,8 +30,8 @@ char *str_concat(char *s1, char *s2)
 	for (k = 0; k < i; k++)
 		strout[k] = s1[k];
 
-	limit = k + j;
-	for (j = 0; k <= limit; k++, j++)
+	limit = j;
+	for (j = 0; j <= limit; k++, j++)
 		strout[k] = s2[j];
 
 	return (strout);

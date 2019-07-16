@@ -43,6 +43,7 @@ char *argstostr(int ac, char **av)
 		if (ia < c - 1)
 			aout[ia] = av[i][j];
 	}
+	aout[ia] = '\0';
 
 	return (aout);
 }

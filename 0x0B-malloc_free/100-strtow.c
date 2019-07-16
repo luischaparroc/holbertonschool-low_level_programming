@@ -1,6 +1,6 @@
 #include "holberton.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 /**
  * ch_free_grid - frees a 2 dimensional array.
  * @grid: multidimensional array of char.
@@ -35,8 +35,10 @@ char **strtow(char *str)
 	for (c = height = 0; str[c] != '\0'; c++)
 		if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
 			height++;
+	if (height == 0)
+		return (NULL);
 	aout = malloc(height * sizeof(char *));
-	if (aout == NULL || height == 0)
+	if (aout == NULL)
 	{
 		free(aout);
 		return (NULL);

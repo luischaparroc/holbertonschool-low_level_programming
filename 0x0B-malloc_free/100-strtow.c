@@ -41,7 +41,7 @@ char **strtow(char *str)
 		free(aout);
 		return (NULL);
 	}
-	for (i = a1 = 0; i < height; i++, j++)
+	for (i = a1 = 0; i < height; i++)
 	{
 		for (c = a1; str[c] != '\0'; c++)
 		{
@@ -58,8 +58,7 @@ char **strtow(char *str)
 				break;
 			}
 		}
-		j = 0;
-		for (; a1 <= c; a1++, j++)
+		for (j = 0; a1 <= c; a1++, j++)
 			aout[i][j] = str[a1];
 		aout[i][j] = '\0';
 	}

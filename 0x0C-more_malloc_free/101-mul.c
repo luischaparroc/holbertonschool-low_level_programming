@@ -1,7 +1,7 @@
 #include "holberton.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <ctype.h>
 /**
  * _initialize_array - set memery to zero in a new array
  * @ar: char array.
@@ -32,7 +32,7 @@ int _checknum(char *argv[], int n)
 	int ln;
 
 	for (ln = 0; argv[n][ln]; ln++)
-		if (argv[n][ln] < '0' || argv[n][ln] > '9')
+		if (!isdigit(argv[n][ln]))
 		{
 			printf("Error\n");
 			exit(98);

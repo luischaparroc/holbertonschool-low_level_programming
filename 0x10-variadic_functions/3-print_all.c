@@ -19,25 +19,25 @@ void print_all(const char * const format, ...)
 		j = 0;
 		while (t_arg[j])
 		{
-			if (format[i] == t_arg[j] && c != 0)
+			if (format[i] == t_arg[j] && c)
 			{
 				printf(", ");
 				break;
-			}, j++;
+			} j++;
 		}
 		switch (format[i])
 		{
 		case 'c':
-			printf("%c", va_arg(valist, int)), c++;
+			printf("%c", va_arg(valist, int)), c = 1;
 			break;
 		case 'i':
-			printf("%d", va_arg(valist, int)), c++;
+			printf("%d", va_arg(valist, int)), c = 1;
 			break;
 		case 'f':
-			printf("%f", va_arg(valist, double)), c++;
+			printf("%f", va_arg(valist, double)), c = 1;
 			break;
 		case 's':
-			str = va_arg(valist, char *), c++;
+			str = va_arg(valist, char *), c = 1;
 			if (!str)
 			{
 				printf("(nil)");
@@ -45,7 +45,7 @@ void print_all(const char * const format, ...)
 			}
 			printf("%s", str);
 			break;
-		}, i++;
+		} i++;
 	}
 	printf("\n"), va_end(valist);
 }

@@ -1,4 +1,4 @@
-        SECTION .data
+	SECTION .data
 msg:	db "Hello, Holberton", 0
 fmt:	db "%s", 10, 0
 
@@ -11,6 +11,5 @@ main:
 	mov eax, 0
 	call printf
 
-        mov ebx, 0
-        mov eax, 1
-        int 0x80
+	mov eax, 0
+	ret

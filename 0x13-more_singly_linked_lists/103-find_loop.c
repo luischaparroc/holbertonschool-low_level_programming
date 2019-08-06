@@ -8,30 +8,32 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *curr;
-	listint_t *find_loop;
+	listint_t *bigger;
+	int control;
 
-	curr = head;
-	find_loop = NULL;
+	if (head == NULL)
+		return (NULL);
 
-	while (head != NULL)
+	bigger = NULL;
+	control = 0;
+
+	while (head->next != NULL)
 	{
-		curr = head;
-
-		if (find_loop == curr)
+		if (bigger == head)
 		{
-			return (curr);
+			control++;
+			if (control == 3)
+				break;
 		}
 
+		if ((long int)head->next > (long int)head && control == 0)
+		{
+			bigger = head->next->next;
+			control = 1;
+		}
 		head = head->next;
-
-		if ((long int)head > (long int)curr)
-		{
-			find_loop = head;
-		}
-
-		curr = curr->next;
 	}
-
-	return (NULL);
+	if (head->next == NULL)
+		return (NULL);
+	return (bigger);
 }

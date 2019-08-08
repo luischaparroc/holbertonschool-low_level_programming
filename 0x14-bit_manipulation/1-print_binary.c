@@ -1,4 +1,5 @@
 #include "holberton.h"
+#include <limits.h>
 
 /**
  * print_binary - prints the binary representation

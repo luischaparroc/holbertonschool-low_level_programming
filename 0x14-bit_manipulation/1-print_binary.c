@@ -16,23 +16,24 @@ void print_binary(unsigned long int n)
 	if (n == 0)
 	{
 		_putchar('0');
-		return;
 	}
-
-	i = (unsigned long long)LONG_MAX + 1;
-	first_one = 0;
-
-	for (; i != 0; i >>= 1)
+	else
 	{
-		if (n & i)
+		i = (unsigned long long)LONG_MAX + 1;
+		first_one = 0;
+
+		for (; i != 0; i >>= 1)
 		{
-			_putchar('1');
-			first_one = 1;
-		}
-		else
-		{
-			if (first_one == 1)
-				_putchar('0');
+			if (n & i)
+			{
+				_putchar('1');
+				first_one = 1;
+			}
+			else
+			{
+				if (first_one == 1)
+					_putchar('0');
+			}
 		}
 	}
 }

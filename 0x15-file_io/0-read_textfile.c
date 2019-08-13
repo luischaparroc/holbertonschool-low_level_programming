@@ -10,7 +10,7 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
-	ssize_t nletters;
+	ssize_t nrd, nwr;
 	char *buf;
 
 	if (!filename)
@@ -25,18 +25,12 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (!buf)
 		return (0);
 
-	read(fd, buf, letters + 1);
-
-	buf[letters] = '\0';
-
-	for (nletters = 0; buf[nletters] != '\0'; nletters++)
-		;
-
-	write(STDOUT_FILENO, buf, nletters);
+	nrd = read(fd, buf, letters);
+	nwr = write(STDOUT_FILENO, buf, nrd);
 
 	close(fd);
 
 	free(buf);
 
-	return (nletters);
+	return (nwr);
 }

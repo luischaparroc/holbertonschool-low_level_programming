@@ -6,16 +6,100 @@
 #include <unistd.h>
 
 /**
- * print_header_32 - prints elf header in
- * 32 bits.
+ * print_addr - prints address
  * @ptr: magic.
  * Return: no return.
  */
-void print_header_32(char *ptr)
+void print_addr(char *ptr)
 {
-	(void)ptr;
+	printf("  Entry point address:               0x");
+	if (ptr[25])
+		printf("%x", ptr[25]);
+	if (ptr[24])
+		printf("%x", ptr[24]);
+	if (ptr[23])
+		printf("%x", ptr[23]);
+	printf("\n");
 }
 
+/**
+ * print_type - prints type
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_type(char *ptr)
+{
+	char type = ptr[16];
+
+	printf("  Type:                              ");
+	if (type == 0)
+		printf("NONE (No file type)\n");
+	else if (type == 1)
+		printf("REL (Relocatable file)\n");
+	else if (type == 2)
+		printf("EXEC (Executable file)\n");
+	else if (type == 3)
+		printf("DYN (Shared object file)\n");
+	else if (type == 4)
+		printf("CORE (Core file)\n");
+}
+
+/**
+ * print_osabi - prints osabi
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_osabi(char *ptr)
+{
+	char osabi = ptr[7];
+
+	printf("  OS/ABI:                            ");
+	if (osabi == 0)
+		printf("UNIX - System V\n");
+	else if (osabi == 2)
+		printf("UNIX - NetBSD\n");
+	else if (osabi == 6)
+		printf("UNIX - Solaris\n");
+	else
+		printf("<unknown %d>\n", osabi);
+
+	printf("  ABI Version:                       %d\n", ptr[8]);
+}
+
+
+/**
+ * print_version - prints version
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_version(char *ptr)
+{
+	char version = ptr[6];
+	char *str;
+
+	if (version)
+		str = "1 (current)";
+	else
+		str = "0 (invalid)";
+
+	printf("  Version:                           %s\n", str);
+}
+/**
+ * print_data - prints data
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_data(char *ptr)
+{
+	char data = ptr[5];
+
+	printf("  Data:                              2's complement");
+	if (data == 1)
+		printf(", little endian\n");
+
+	if (data == 2)
+		printf(", big endian\n");
+}
 /**
  * print_magic - prints magic info.
  * @ptr: magic.
@@ -44,25 +128,22 @@ void check_sys(char *ptr)
 	char sys = ptr[4] + '0';
 
 	if (sys == '0')
-	{
-		dprintf(STDERR_FILENO, "Invalid class\n");
 		exit(98);
-	}
 
 	printf("ELF Header:\n");
 	print_magic(ptr);
 
 	if (sys == '1')
-	{
 		printf("  Class:                             ELF32\n");
-		print_header_32(ptr);
-	}
 
 	if (sys == '2')
-	{
 		printf("  Class:                             ELF64\n");
-		printf("System 64\n");
-	}
+
+	print_data(ptr);
+	print_version(ptr);
+	print_osabi(ptr);
+	print_type(ptr);
+	print_addr(ptr);
 }
 
 /**
@@ -77,7 +158,6 @@ int check_elf(char *ptr)
 	char L = ptr[2];
 	char F = ptr[3];
 
-	printf("%x %c %c %c\n", ptr[0], ptr[1], ptr[2], ptr[3]);
 	if (addr == 127 && E == 'E' && L == 'L' && F == 'F')
 		return (1);
 
@@ -92,8 +172,8 @@ int check_elf(char *ptr)
  */
 int main(int argc, char *argv[])
 {
-	int fd;
-	char ptr[16];
+	int fd, ret_read;
+	char ptr[26];
 
 	if (argc != 2)
 	{
@@ -110,7 +190,14 @@ int main(int argc, char *argv[])
 	}
 
 	lseek(fd, 0, SEEK_SET);
-	read(fd, ptr, 16);
+	ret_read = read(fd, ptr, 26);
+
+	if (ret_read == -1)
+	{
+		dprintf(STDERR_FILENO, "Err: The file can not be read\n");
+		exit(98);
+	}
+
 	if (!check_elf(ptr))
 	{
 		dprintf(STDERR_FILENO, "Err: It is not an ELF\n");

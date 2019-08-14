@@ -9,6 +9,12 @@
 #include <sys/mman.h>
 #include <stddef.h>
 
+/**
+ * print_header_32 - prints elf header in
+ * 32 bits.
+ * @ptr: magic.
+ * Return: no return.
+ */
 void print_header_32(char *ptr)
 {
 	Elf32_Ehdr *Elf32_ptr = NULL;
@@ -18,6 +24,11 @@ void print_header_32(char *ptr)
 
 }
 
+/**
+ * print_magic - prints magic info.
+ * @ptr: magic.
+ * Return: no return.
+ */
 void print_magic(char *ptr)
 {
 	int bytes;
@@ -31,6 +42,11 @@ void print_magic(char *ptr)
 
 }
 
+/**
+ * check_sys - check the version system.
+ * @ptr: magic.
+ * Return: no return.
+ */
 void check_sys(char *ptr)
 {
 	char sys = ptr[4] + '0';
@@ -57,6 +73,11 @@ void check_sys(char *ptr)
 	}
 }
 
+/**
+ * check_elf - check if it is an elf file.
+ * @ptr: magic.
+ * Return: 1 if it is an elf file. 0 if not.
+ */
 int check_elf(char *ptr)
 {
 	int addr = (int)ptr[0];
@@ -70,7 +91,12 @@ int check_elf(char *ptr)
 	return (0);
 }
 
-
+/**
+ * main - check the code for Holberton School students.
+ * @argc: number of arguments.
+ * @argv: arguments vector.
+ * Return: Always 0.
+ */
 int main(int argc, char *argv[])
 {
 	int fd;

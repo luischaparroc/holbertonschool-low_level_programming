@@ -13,12 +13,10 @@
 void print_addr(char *ptr)
 {
 	printf("  Entry point address:               0x");
-	if (ptr[25])
-		printf("%x", ptr[25]);
-	if (ptr[24])
-		printf("%x", ptr[24]);
-	if (ptr[23])
-		printf("%x", ptr[23]);
+
+	printf("%x", ptr[25]);
+	printf("%x", ptr[24]);
+	printf("%x", ptr[23]);
 	printf("\n");
 }
 

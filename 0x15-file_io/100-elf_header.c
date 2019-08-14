@@ -13,7 +13,7 @@
  */
 void print_header_32(char *ptr)
 {
-
+	(void)ptr;
 }
 
 /**

@@ -23,15 +23,14 @@ void print_addr(char *ptr)
 	{
 		begin = 26;
 		printf("80");
-		for (index = begin - 1; index > 22; index--)
+		for (index = begin; index > 22; index--)
 		{
 			if (ptr[index] > 0)
 				printf("%x", ptr[index]);
-
 			else if (ptr[index] < 0)
 				printf("%x", 256 + ptr[index]);
 
-			if (ptr[index] == 0 && ptr[7] == 6)
+			if (ptr[index] == 0 && ptr[7] == 6 && index != 26)
 				printf("%02x", ptr[index]);
 
 		}

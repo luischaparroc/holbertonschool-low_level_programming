@@ -13,18 +13,42 @@
 void print_addr(char *ptr)
 {
 	int index;
+	int begin;
+	char sys;
 
 	printf("  Entry point address:               0x");
 
-	for (index = 26; index > 22; index--)
+	sys = ptr[4] + '0';
+	if (sys == '1')
 	{
-		if (ptr[index] > 0)
+		begin = 25;
+		printf("80");
+		for (index = begin; index > 22; index--)
 		{
-			printf("%x", ptr[index]);
+			if (ptr[index] > 0)
+			{
+				printf("%x", ptr[index]);
+			}
+			else if (ptr[index] < 0)
+			{
+				printf("%x", 256 + ptr[index]);
+			}
 		}
-		else if (ptr[index] < 0)
+	}
+
+	if (sys == '2')
+	{
+		begin = 26;
+		for (index = begin; index > 22; index--)
 		{
-			printf("%x", 256 + ptr[index]);
+			if (ptr[index] >= 0)
+			{
+				printf("%02x", ptr[index]);
+			}
+			else if (ptr[index] < 0)
+			{
+				printf("%02x", 256 + ptr[index]);
+			}
 		}
 	}
 	printf("\n");
@@ -50,6 +74,8 @@ void print_type(char *ptr)
 		printf("DYN (Shared object file)\n");
 	else if (type == 4)
 		printf("CORE (Core file)\n");
+	else
+		printf("<unknown: %x>\n", type);
 }
 
 /**
@@ -69,7 +95,7 @@ void print_osabi(char *ptr)
 	else if (osabi == 6)
 		printf("UNIX - Solaris\n");
 	else
-		printf("<unknown %d>\n", osabi);
+		printf("<unknown %x>\n", osabi);
 
 	printf("  ABI Version:                       %d\n", ptr[8]);
 }

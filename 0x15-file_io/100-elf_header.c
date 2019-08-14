@@ -95,7 +95,7 @@ void print_osabi(char *ptr)
 	else if (osabi == 6)
 		printf("UNIX - Solaris\n");
 	else
-		printf("<unknown %x>\n", osabi);
+		printf("<unknown: %x>\n", osabi);
 
 	printf("  ABI Version:                       %d\n", ptr[8]);
 }

@@ -23,16 +23,17 @@ void print_addr(char *ptr)
 	{
 		begin = 26;
 		printf("80");
-		for (index = begin; index > 22; index--)
+		for (index = begin - 1; index > 22; index--)
 		{
 			if (ptr[index] > 0)
-			{
 				printf("%x", ptr[index]);
-			}
+
 			else if (ptr[index] < 0)
-			{
 				printf("%x", 256 + ptr[index]);
-			}
+
+			if (ptr[index] == 0 && ptr[7] == 6)
+				printf("%02x", ptr[index]);
+
 		}
 	}
 
@@ -42,13 +43,11 @@ void print_addr(char *ptr)
 		for (index = begin; index > 23; index--)
 		{
 			if (ptr[index] >= 0)
-			{
 				printf("%02x", ptr[index]);
-			}
+
 			else if (ptr[index] < 0)
-			{
 				printf("%02x", 256 + ptr[index]);
-			}
+
 		}
 	}
 	printf("\n");

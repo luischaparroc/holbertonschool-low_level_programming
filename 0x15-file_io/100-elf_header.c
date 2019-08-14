@@ -12,11 +12,21 @@
  */
 void print_addr(char *ptr)
 {
+	int index;
+
 	printf("  Entry point address:               0x");
 
-	printf("%02x", ptr[25]);
-	printf("%02x", ptr[24]);
-	printf("%02x", ptr[23]);
+	for (index = 26; index > 22; index--)
+	{
+		if (ptr[index] > 0)
+		{
+			printf("%x", ptr[index]);
+		}
+		else if (ptr[index] < 0)
+		{
+			printf("%x", 256 + ptr[index]);
+		}
+	}
 	printf("\n");
 }
 
@@ -171,7 +181,7 @@ int check_elf(char *ptr)
 int main(int argc, char *argv[])
 {
 	int fd, ret_read;
-	char ptr[26];
+	char ptr[27];
 
 	if (argc != 2)
 	{
@@ -188,7 +198,7 @@ int main(int argc, char *argv[])
 	}
 
 	lseek(fd, 0, SEEK_SET);
-	ret_read = read(fd, ptr, 26);
+	ret_read = read(fd, ptr, 27);
 
 	if (ret_read == -1)
 	{

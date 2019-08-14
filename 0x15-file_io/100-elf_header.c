@@ -23,15 +23,15 @@ void print_addr(char *ptr)
 	{
 		begin = 25;
 		printf("80");
-		for (index = begin; index > 22; index--)
+		for (index = begin; index > 23; index--)
 		{
 			if (ptr[index] > 0)
 			{
-				printf("%x", ptr[index]);
+				printf("%02x", ptr[index]);
 			}
 			else if (ptr[index] < 0)
 			{
-				printf("%x", 256 + ptr[index]);
+				printf("%02x", 256 + ptr[index]);
 			}
 		}
 	}
@@ -39,7 +39,7 @@ void print_addr(char *ptr)
 	if (sys == '2')
 	{
 		begin = 26;
-		for (index = begin; index > 22; index--)
+		for (index = begin; index > 23; index--)
 		{
 			if (ptr[index] >= 0)
 			{

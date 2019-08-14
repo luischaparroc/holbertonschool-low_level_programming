@@ -4,7 +4,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <elf.h>
 
 /**
  * print_header_32 - prints elf header in
@@ -14,10 +13,6 @@
  */
 void print_header_32(char *ptr)
 {
-	Elf32_Ehdr *Elf32_ptr = NULL;
-	(void)Elf32_ptr;
-
-	Elf32_ptr = (Elf32_Ehdr *)ptr;
 
 }
 

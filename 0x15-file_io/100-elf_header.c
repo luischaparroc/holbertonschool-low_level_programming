@@ -23,7 +23,7 @@ void print_addr(char *ptr)
 	{
 		begin = 26;
 		printf("80");
-		for (index = begin; index > 23; index--)
+		for (index = begin; index > 22; index--)
 		{
 			if (ptr[index] > 0)
 			{

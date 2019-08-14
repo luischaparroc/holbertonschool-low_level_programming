@@ -27,11 +27,11 @@ void print_addr(char *ptr)
 		{
 			if (ptr[index] > 0)
 			{
-				printf("%02x", ptr[index]);
+				printf("%x", ptr[index]);
 			}
 			else if (ptr[index] < 0)
 			{
-				printf("%02x", 256 + ptr[index]);
+				printf("%x", 256 + ptr[index]);
 			}
 		}
 	}

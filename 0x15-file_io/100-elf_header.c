@@ -5,8 +5,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <elf.h>
-#include <sys/mman.h>
-
 
 /**
  * print_header_32 - prints elf header in
@@ -84,6 +82,7 @@ int check_elf(char *ptr)
 	char L = ptr[2];
 	char F = ptr[3];
 
+	printf("%x %c %c %c\n", ptr[0], ptr[1], ptr[2], ptr[3]);
 	if (addr == 127 && E == 'E' && L == 'L' && F == 'F')
 		return (1);
 
@@ -99,8 +98,7 @@ int check_elf(char *ptr)
 int main(int argc, char *argv[])
 {
 	int fd;
-	size_t filesize;
-	char *ptr;
+	char ptr[16];
 
 	if (argc != 2)
 	{
@@ -116,9 +114,8 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	filesize = lseek(fd, 0, SEEK_END);
-	ptr = mmap(0, filesize, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
-
+	lseek(fd, 0, SEEK_SET);
+	read(fd, ptr, 16);
 	if (!check_elf(ptr))
 	{
 		dprintf(STDERR_FILENO, "Err: It is not an ELF\n");

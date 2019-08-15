@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <elf.h>
 
 /**
  * print_addr - prints address
@@ -12,7 +13,7 @@
  */
 void print_addr(char *ptr)
 {
-	int index;
+	int i;
 	int begin;
 	char sys;
 
@@ -23,15 +24,15 @@ void print_addr(char *ptr)
 	{
 		begin = 26;
 		printf("80");
-		for (index = begin; index > 22; index--)
+		for (i = begin; i >= 22; i--)
 		{
-			if (ptr[index] > 0)
-				printf("%x", ptr[index]);
-			else if (ptr[index] < 0)
-				printf("%x", 256 + ptr[index]);
+			if (ptr[i] > 0)
+				printf("%x", ptr[i]);
+			else if (ptr[i] < 0)
+				printf("%x", 256 + ptr[i]);
 
-			if (ptr[index] == 0 && ptr[7] == 6 && index != 26)
-				printf("%02x", ptr[index]);
+			if (ptr[i] == 0 && ptr[7] == 6 && i != 26)
+				printf("%02x", ptr[i]);
 
 		}
 	}
@@ -39,13 +40,13 @@ void print_addr(char *ptr)
 	if (sys == '2')
 	{
 		begin = 26;
-		for (index = begin; index > 23; index--)
+		for (i = begin; i > 23; i--)
 		{
-			if (ptr[index] >= 0)
-				printf("%02x", ptr[index]);
+			if (ptr[i] >= 0)
+				printf("%02x", ptr[i]);
 
-			else if (ptr[index] < 0)
-				printf("%02x", 256 + ptr[index]);
+			else if (ptr[i] < 0)
+				printf("%02x", 256 + ptr[i]);
 
 		}
 	}
@@ -106,15 +107,14 @@ void print_osabi(char *ptr)
  */
 void print_version(char *ptr)
 {
-	char version = ptr[6];
-	char *str;
+	int version = ptr[6];
 
-	if (version)
-		str = "1 (current)";
-	else
-		str = "0 (invalid)";
+	printf("  Version:                           %d", version);
 
-	printf("  Version:                           %s\n", str);
+	if (version == EV_CURRENT)
+		printf(" (current)");
+
+	printf("\n");
 }
 /**
  * print_data - prints data

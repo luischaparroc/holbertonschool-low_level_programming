@@ -30,11 +30,9 @@ void print_addr(char *ptr)
 				printf("%x", ptr[i]);
 			else if (ptr[i] < 0)
 				printf("%x", 256 + ptr[i]);
-
-			if (ptr[i] == 0 && ptr[7] == 6 && i != 26)
-				printf("%02x", ptr[i]);
-
 		}
+		if (ptr[7] == 6)
+			printf("00");
 	}
 
 	if (sys == '2')
@@ -61,6 +59,11 @@ void print_addr(char *ptr)
 void print_type(char *ptr)
 {
 	char type = ptr[16];
+
+	if (ptr[5] == 1)
+		type = ptr[16];
+	else
+		type = ptr[17];
 
 	printf("  Type:                              ");
 	if (type == 0)

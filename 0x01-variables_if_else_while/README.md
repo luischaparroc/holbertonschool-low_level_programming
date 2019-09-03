@@ -9,7 +9,7 @@ Project done during **Full Stack Software Engineering studies** at **Holberton S
 * Tested on Ubuntu 14.04 LTS
 
 ## Files
-All of the following files are scripts and programs written in C:
+All of the following files are programs written in C:
 
 | Filename | Description |
 | -------- | ----------- |

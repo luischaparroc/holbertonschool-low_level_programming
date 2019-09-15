@@ -81,7 +81,7 @@ int f6(char *usrn)
  *
  * @argc: arguments count
  * @argv: arguments vector
- * Return: Always 1
+ * Return: Always 0
  */
 int main(int argc, char **argv)
 {

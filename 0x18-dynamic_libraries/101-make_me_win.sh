@@ -1,3 +1,3 @@
 #!/bin/bash
-export LD_LIBRARY_PATH=.$LD_LIBRARY_PATH
-export LD_PRELOAD=$PWD/random.so
+mv random.so $HOME
+export LD_PRELOAD=$HOME/random.so

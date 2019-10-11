@@ -32,24 +32,6 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
- * checksum - returns the ASCII value of the string
- *
- * @s: input string
- * Return: ASCII value
- */
-unsigned long int checksum(char *s)
-{
-	unsigned long int value, i;
-
-	for (value = i = 0; s[i]; i++)
-	{
-		value += s[i];
-	}
-
-	return (value);
-}
-
-/**
  * add_n_shash - adds a node at the beginning of a shash at a given index
  *
  * @h: head of the shash linked list

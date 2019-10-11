@@ -95,7 +95,6 @@ void hash_table_delete(hash_table_t *ht);
 
 /* 100-sorted_hash_table.c */
 shash_table_t *shash_table_create(unsigned long int size);
-unsigned long int checksum(char *s);
 shash_node_t *add_n_shash(shash_node_t **, const char *, const char *);
 void add_i_shash(shash_table_t *ht, shash_node_t *new);
 int shash_table_set(shash_table_t *ht, const char *key, const char *value);

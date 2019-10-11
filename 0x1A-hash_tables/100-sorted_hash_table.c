@@ -97,20 +97,20 @@ shash_node_t *add_n_shash(shash_node_t **h, const char *key, const char *value)
  */
 void add_i_shash(shash_table_t *ht, shash_node_t *new)
 {
-	unsigned long int ASCIIv;
 	shash_node_t *tmp1, *tmp2;
+	int ret;
 
 	tmp1 = tmp2 = ht->shead;
 
-	ASCIIv = checksum(new->key);
-
 	while (tmp1 != NULL)
 	{
-		if (ASCIIv <= checksum(tmp1->key))
+		ret = strcmp(new->key, tmp1->key);
+		if (ret == 0)
 		{
-			if (strcmp(new->key, tmp1->key) == 0)
-				return;
-
+			return;
+		}
+		else if (ret < 0)
+		{
 			new->sprev = tmp1->sprev;
 
 			if (tmp1->sprev)

@@ -52,6 +52,8 @@ void increase_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 		if (aux->n > aux->next->n)
 		{
 			swap_list(&aux, &(aux->next), 0);
+			if (aux->prev == NULL)
+				*list = aux;
 			print_list(*list);
 		}
 		aux = aux->next;
@@ -59,7 +61,6 @@ void increase_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 
 	*limit = aux;
 	*ptr = aux;
-
 }
 
 /**
@@ -81,10 +82,8 @@ void decrease_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 		if (aux->n < aux->prev->n)
 		{
 			swap_list(&(aux->prev), &aux, 1);
-
 			if (aux->prev->prev == NULL)
 				*list = aux->prev;
-
 			print_list(*list);
 		}
 		aux = aux->prev;
@@ -106,10 +105,10 @@ void cocktail_sort_list(listint_t **list)
 {
 	listint_t *limit1, *limit2, *ptr;
 
-	if (!list)
+	if (list == NULL)
 		return;
 
-	if (!*list)
+	if (*list == NULL)
 		return;
 
 	limit1 = limit2 = NULL;

@@ -1,38 +1,4 @@
 #include "sort.h"
-
-/**
- * swap_list - swaps the elements of the list
- *
- * @ptr1: first pointer
- * @ptr2: second pointer
- * @n: n is 0 for increase, n is 1 for decrease
- * Return: no return
- */
-void swap_list(listint_t **ptr1, listint_t **ptr2, int n)
-{
-	listint_t *aux, *tmp;
-
-	aux = *ptr1;
-	tmp = *ptr2;
-
-	aux->next = tmp->next;
-	tmp->prev = aux->prev;
-
-	if (tmp->next)
-		tmp->next->prev = aux;
-
-	if (aux->prev)
-		aux->prev->next = tmp;
-
-	aux->prev = tmp;
-	tmp->next = aux;
-
-	if (n == 0)
-		*ptr1 = tmp;
-	else
-		*ptr2 = aux;
-}
-
 /**
  * increase_sort - move the bigger numbers to the end
  *
@@ -43,7 +9,7 @@ void swap_list(listint_t **ptr1, listint_t **ptr2, int n)
  */
 void increase_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 {
-	listint_t *aux;
+	listint_t *tmp, *aux;
 
 	aux = *ptr;
 
@@ -51,7 +17,20 @@ void increase_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 	{
 		if (aux->n > aux->next->n)
 		{
-			swap_list(&aux, &(aux->next), 0);
+			tmp = aux->next;
+			aux->next = tmp->next;
+			tmp->prev = aux->prev;
+
+			if (tmp->next)
+				tmp->next->prev = aux;
+
+			if (aux->prev)
+				aux->prev->next = tmp;
+
+			aux->prev = tmp;
+			tmp->next = aux;
+
+			aux = tmp;
 			print_list(*list);
 		}
 		aux = aux->next;
@@ -59,7 +38,6 @@ void increase_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 
 	*limit = aux;
 	*ptr = aux;
-
 }
 
 /**
@@ -72,7 +50,7 @@ void increase_sort(listint_t **ptr, listint_t **limit, listint_t **list)
  */
 void decrease_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 {
-	listint_t *aux;
+	listint_t *tmp, *aux;
 
 	aux = *ptr;
 
@@ -80,10 +58,23 @@ void decrease_sort(listint_t **ptr, listint_t **limit, listint_t **list)
 	{
 		if (aux->n < aux->prev->n)
 		{
-			swap_list(&(aux->prev), &aux, 1);
+			tmp = aux;
+			aux = tmp->prev;
 
-			if (aux->prev->prev == NULL)
-				*list = aux->prev;
+			aux->next = tmp->next;
+			tmp->prev = aux->prev;
+
+			if (tmp->next)
+				tmp->next->prev = aux;
+
+			if (aux->prev)
+				aux->prev->next = tmp;
+
+			aux->prev = tmp;
+			tmp->next = aux;
+
+			if (tmp->prev == NULL)
+				*list = tmp;
 
 			print_list(*list);
 		}

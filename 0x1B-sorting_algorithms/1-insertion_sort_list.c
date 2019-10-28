@@ -13,8 +13,12 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *ptr, *tmp;
 
+	if (!list)
+		return;
+
 	ptr = *list;
-	while (ptr != NULL)
+
+	while (ptr)
 	{
 		while (ptr->next && (ptr->n > ptr->next->n))
 		{

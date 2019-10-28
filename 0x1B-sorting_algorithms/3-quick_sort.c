@@ -21,36 +21,37 @@ void quick_sort(int *array, size_t size)
  * @size: size of the array
  * Return: no return
  */
-void _qsort(int *a, size_t low, size_t high, size_t size)
+void _qsort(int *a, int low, int high, int size)
 {
-	size_t p, w, i;
+	int p, w, i;
 	int tmp;
 
-	p = high;
-	w = low;
-	for (i = low; i < high; i++)
+	if (low < high)
 	{
-		if (a[i] < a[p])
+		p = high;
+		w = low;
+		for (i = low; i < high; i++)
 		{
-			if (i != w)
+			if (a[i] < a[p])
 			{
-				tmp = a[i];
-				a[i] = a[w];
-				a[w] = tmp;
-				print_array(a, size);
+				if (i != w)
+				{
+					tmp = a[i];
+					a[i] = a[w];
+					a[w] = tmp;
+					print_array(a, size);
+				}
+				w++;
 			}
-			w++;
 		}
-	}
-	if (w != p && a[w] != a[p])
-	{
-		tmp = a[w];
-		a[w] = a[p];
-		a[p] = tmp;
-		print_array(a, size);
-	}
-	if (w != high)
-		_qsort(a, w + 1, high, size);
-	if (low != w)
+		if (w != p && a[w] != a[p])
+		{
+			tmp = a[w];
+			a[w] = a[p];
+			a[p] = tmp;
+			print_array(a, size);
+		}
 		_qsort(a, low, w - 1, size);
+		_qsort(a, w + 1, high, size);
+	}
 }

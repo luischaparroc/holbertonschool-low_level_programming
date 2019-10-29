@@ -65,6 +65,9 @@ void heap_sort(int *array, size_t size)
 	int i;
 	size_t limit;
 
+	if (!array)
+		return;
+
 	i = 0;
 	limit = size;
 

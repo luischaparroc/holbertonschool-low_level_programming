@@ -71,7 +71,7 @@ void heap_sort(int *array, size_t size)
 	while (limit > 1)
 	{
 		recursion_heap(array, i, size, limit);
-		if (array[i] > array[limit - 1])
+		if (array[i] >= array[limit - 1])
 		{
 			swap_nums(array, i, limit - 1);
 			print_array(array, size);

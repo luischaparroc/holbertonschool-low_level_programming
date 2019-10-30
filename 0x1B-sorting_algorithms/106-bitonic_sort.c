@@ -134,6 +134,6 @@ void bitonic_sort(int *array, size_t size)
 
 	recursion(array, 0, size, 0, size);
 	sort_up(array, 0, size);
-	printf("Result [%ld/%ld] (%s)\n", size, size, "UP");
+	printf("Result [%ld/%ld] (%s):\n", size, size, "UP");
 	print_bitonic(array, 0, size);
 }

@@ -90,6 +90,7 @@ void sort_down(int *arr, int low, int high)
  * @arr: input array
  * @low: first index
  * @high: last index
+ * @bool: UP or DOWN
  * @size: size of the array
  * Return: no return
  */

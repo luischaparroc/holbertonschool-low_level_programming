@@ -129,7 +129,7 @@ void recursion(int *arr, int low, int high, int bool, size_t size)
  */
 void bitonic_sort(int *array, size_t size)
 {
-	if (!array || size == 0)
+	if (!array || size < 2)
 		return;
 
 	recursion(array, 0, size, 0, size);

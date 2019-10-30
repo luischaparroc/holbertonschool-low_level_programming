@@ -110,12 +110,12 @@ void recursion(int *arr, int low, int high, int bool, size_t size)
 
 	recursion(arr, low, (high + low) / 2, 0, size);
 	sort_up(arr, low, (high + low) / 2);
-	printf("Result [%d/%ld] (%s)\n", ((high + low) / 2) - low, size, "UP");
+	printf("Result [%d/%ld] (%s):\n", ((high + low) / 2) - low, size, "UP");
 	print_bitonic(arr, low, (high + low) / 2);
 
 	recursion(arr, (high + low) / 2, high, 1, size);
 	sort_down(arr, (high + low) / 2, high);
-	printf("Result [%d/%ld] (%s)\n", high - ((high + low) / 2), size, "DOWN");
+	printf("Result [%d/%ld] (%s):\n", high - ((high + low) / 2), size, "DOWN");
 	print_bitonic(arr, (high + low) / 2, high);
 }
 

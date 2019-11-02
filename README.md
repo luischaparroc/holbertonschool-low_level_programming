@@ -38,3 +38,4 @@ All of the following folders are projects done during the studies:
 | [`0x18-dynamic_libraries`](https://github.com/luischaparroc/holbertonschool-low_level_programming/tree/master/0x18-dynamic_libraries) | It aims to learn about dynamic and shared libraries in **C language** |
 | [`0x19-stacks_queues_lifo_fifo`](https://github.com/jorgezafra94/monty) | Submodule of **monty**, an interpreter of Monty ByteCode files written with **C language** |
 | [`0x1A-hash_tables`](https://github.com/luischaparroc/holbertonschool-low_level_programming/tree/master/0x1A-hash_tables) | It aims to learn how to implement Hash Tables with **C language** |
+| [`0x1B-sorting_algorithms`](https://github.com/luischaparroc/holbertonschool-low_level_programming/tree/master/0x1B-sorting_algorithms) | It aims to learn about sorting algorithms (bubble sort, insertion sort, selection sort, quick sort and so on) and Big O Notation in **C language** |

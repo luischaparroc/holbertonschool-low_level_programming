@@ -4,13 +4,8 @@ OBJ=$(SRC:%.c=%.o)
 NAME=holberton
 RM=rm -f
 
-all: compile
-
-compile: $(OBJ)
+all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
-
-objects:
-	$(CC) -c $(SRC)
 
 clean:
 	$(RM) *~ $(NAME)

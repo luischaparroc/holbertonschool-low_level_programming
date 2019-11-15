@@ -6,7 +6,7 @@ RM=*~
 
 all: compile
 
-compile:
+compile: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 objects:

@@ -2,7 +2,7 @@ CC=gcc
 SRC=main.c holberton.c
 OBJ=$(SRC:%.c=%.o)
 NAME=holberton
-RM=*~
+RM=rm -f
 
 all: compile
 
@@ -13,14 +13,11 @@ objects:
 	$(CC) -c $(SRC)
 
 clean:
-	rm -f $(RM) $(NAME)
+	$(RM) *~ $(NAME)
 
 oclean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
-fclean:
-	rm -f $(RM) $(NAME)
-	rm -f $(OBJ)
+fclean: clean oclean
 
-re: oclean $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+re: oclean all

@@ -6,10 +6,7 @@ NAME=holberton
 all: compile
 
 compile: $(OBJ)
-	gcc $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME)
 
-main.o:
-	gcc -c -o main.o main.c
-
-holberton.o:
-	gcc -c -o holberton.o holberton.c
+objects:
+	$(CC) -c $(SRC)

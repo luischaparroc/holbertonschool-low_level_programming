@@ -1,6 +1,6 @@
 CC=gcc
 SRC=main.c holberton.c
-OBJ=$(SRC:.c=.o)
+OBJ=$(SRC:%.c=%.o)
 NAME=holberton
 CFLAGS=-Wall -Werror -Wextra -pedantic
 

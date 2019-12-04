@@ -8,16 +8,10 @@
  */
 int recursive_balance(const binary_tree_t *tree)
 {
-	int left = 0;
-	int right = 0;
-
 	if (tree == NULL)
 		return (-1);
 
-	left = recursive_balance(tree->left);
-	right = recursive_balance(tree->right);
-
-	return (left - right);
+	return (recursive_balance(tree->left) - recursive_balance(tree->right));
 }
 
 /**

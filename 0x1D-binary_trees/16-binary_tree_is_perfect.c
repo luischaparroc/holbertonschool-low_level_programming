@@ -44,7 +44,7 @@ int height(const binary_tree_t *tree)
 	int right = 0;
 
 	if (tree == NULL)
-		return (0);
+		return (-1);
 
 	left = height(tree->left);
 	right = height(tree->right);
@@ -63,8 +63,11 @@ int height(const binary_tree_t *tree)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	if (tree && height(tree->right) == height(tree->left))
+	if (tree && height(tree->left) == height(tree->right))
 	{
+		if (height(tree->left) == -1)
+			return (1);
+
 		if (binary_tree_is_leaf(tree->left) && binary_tree_is_leaf(tree->right))
 			return (1);
 

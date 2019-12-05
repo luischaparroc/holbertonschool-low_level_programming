@@ -46,36 +46,18 @@ avl_t *avl_in(avl_t **tree, int value)
  */
 void pre_rotation(avl_t **arg_node)
 {
-	avl_t *tree, *new_root, *node;
+	avl_t *node;
 
 	node = *arg_node;
 
 	if (node->left && node->left->left == NULL && node->left->right)
 	{
-		tree = node->left;
-		new_root = tree->right;
-
-		tree->right = NULL;
-
-		new_root->left = tree;
-		new_root->parent = tree->parent;
-		tree->parent = new_root;
-
-		node->left = new_root;
+		node->left = binary_tree_rotate_left(node->left);
 	}
 
 	if (node->right && node->right->right == NULL && node->right->left)
 	{
-		tree = node->right;
-		new_root = tree->left;
-
-		tree->left = NULL;
-
-		new_root->right = tree;
-		new_root->parent = tree->parent;
-		tree->parent = new_root;
-
-		node->right = new_root;
+		node->right = binary_tree_rotate_left(node->right);
 	}
 
 	*arg_node = node;
@@ -151,7 +133,8 @@ avl_t *avl_insert(avl_t **tree, int value)
 
 	node = avl_in(tree, value);
 
-	check_balance(&node, tree);
+	if (node)
+		check_balance(&node, tree);
 
 	return (node);
 }

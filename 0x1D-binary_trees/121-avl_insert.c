@@ -46,7 +46,7 @@ avl_t *avl_in(avl_t **tree, int value)
  */
 void pre_rotation(avl_t **arg_node)
 {
-	avl_t *node;
+	avl_t *tree, *new_root, *node;
 
 	node = *arg_node;
 
@@ -151,7 +151,7 @@ avl_t *avl_insert(avl_t **tree, int value)
 
 	node = avl_in(tree, value);
 
-	if (node)
+	if (node != NULL)
 		check_balance(&node, tree);
 
 	return (node);

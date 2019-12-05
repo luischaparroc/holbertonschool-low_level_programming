@@ -52,12 +52,30 @@ void pre_rotation(avl_t **arg_node)
 
 	if (node->left && node->left->left == NULL && node->left->right)
 	{
-		node->left = binary_tree_rotate_left(node->left);
+		tree = node->left;
+		new_root = tree->right;
+
+		tree->right = NULL;
+
+		new_root->left = tree;
+		new_root->parent = tree->parent;
+		tree->parent = new_root;
+
+		node->left = new_root;
 	}
 
 	if (node->right && node->right->right == NULL && node->right->left)
 	{
-		node->right = binary_tree_rotate_left(node->right);
+		tree = node->right;
+		new_root = tree->left;
+
+		tree->left = NULL;
+
+		new_root->right = tree;
+		new_root->parent = tree->parent;
+		tree->parent = new_root;
+
+		node->right = new_root;
 	}
 
 	*arg_node = node;

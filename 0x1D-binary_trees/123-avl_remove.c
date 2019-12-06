@@ -135,19 +135,19 @@ avl_t *avl_search_remove(avl_t **tree, int value)
 {
 	avl_t *put_node;
 
-	if (tree && value < (*tree)->n)
+	if (tree && *tree && value < (*tree)->n)
 	{
 		put_node = avl_search_remove(&((*tree)->left), value);
 		check_balance_avl(tree, value);
 		return (put_node);
 	}
-	if (tree && value > (*tree)->n)
+	if (tree && *tree && value > (*tree)->n)
 	{
 		put_node = avl_search_remove(&((*tree)->right), value);
 		check_balance_avl(tree, value);
 		return (put_node);
 	}
-	if (tree)
+	if (tree && *tree)
 	{
 		if ((*tree)->left || (*tree)->right)
 		{

@@ -99,12 +99,23 @@ void change_node(avl_t **arg_tree, avl_t **arg_node)
 
 	if (tree->left && tree->left != put_node)
 	{
+		if (put_node->left)
+		{
+			put_node->parent->right = put_node->left;
+			put_node->left->parent = put_node->parent;
+		}
+
 		put_node->left = tree->left;
 		tree->left->parent = put_node;
 	}
-
 	if (tree->right && tree->right != put_node)
 	{
+		if (put_node->right)
+		{
+			put_node->parent->left = put_node->right;
+			put_node->right->parent = put_node->parent;
+		}
+
 		put_node->right = tree->right;
 		tree->right->parent = put_node;
 	}

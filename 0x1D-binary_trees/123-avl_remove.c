@@ -161,6 +161,7 @@ avl_t *avl_search_remove(avl_t **tree, int value)
 		}
 		else
 		{
+			put_node = *tree;
 			if ((*tree)->parent)
 			{
 				if ((*tree)->parent->left == (*tree))
@@ -168,8 +169,7 @@ avl_t *avl_search_remove(avl_t **tree, int value)
 				else
 					(*tree)->parent->right = NULL;
 			}
-			free(*tree);
-			*tree = NULL;
+			free(put_node), *tree = NULL;
 		}
 	}
 	return (*tree);

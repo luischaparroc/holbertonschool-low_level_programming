@@ -109,10 +109,10 @@ void change_node(avl_t **arg_tree, avl_t **arg_node)
 		tree->right->parent = put_node;
 	}
 
+	put_node->parent = tree->parent;
+
 	if (tree->parent)
 	{
-		put_node->parent = tree->parent;
-
 		if (tree->parent->left == tree)
 			tree->parent->left = put_node;
 		else

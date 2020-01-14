@@ -32,11 +32,11 @@ int recursive_search(int *array, size_t size, int value)
 		return ((int)half);
 
 	if (value < array[half])
-		return (binary_search(array, half, value));
+		return (recursive_search(array, half, value));
 
 	half++;
 
-	return (binary_search(array + half, size - half, value) + half);
+	return (recursive_search(array + half, size - half, value) + half);
 }
 
 /**

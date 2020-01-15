@@ -30,7 +30,7 @@ int recursive_search(int *array, size_t size, int value)
 
 	if (value == array[half])
 	{
-		if (half && array[half - 1] == value)
+		if (half)
 			return (recursive_search(array, half + 1, value));
 		return ((int)half);
 	}

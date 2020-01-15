@@ -23,17 +23,19 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	k = 0;
 
 	do {
+		printf("Value checked array[%d] = [%d]\n", (int)index, list->n);
 		prev = list;
 		k++;
 		index = k * m;
+
+		if (list->n == value)
+			return (list);
 
 		while (list->next && list->index < index)
 			list = list->next;
 
 		if (!list->next)
 			break;
-
-		printf("Value checked array[%d] = [%d]\n", (int)index, list->n);
 
 	} while (index < size && list->n < value);
 

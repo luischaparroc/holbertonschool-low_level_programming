@@ -36,10 +36,9 @@ int rec_search(int *array, size_t size, int value)
 	}
 
 	if (value < array[half])
-		return (rec_search(array, half, value));
+		return (rec_search(array, half + 1, value));
 
 	half++;
-
 	return (rec_search(array + half, size - half, value) + half);
 }
 
